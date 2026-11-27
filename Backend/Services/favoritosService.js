@@ -1,4 +1,4 @@
-import Favorito from '../../Models/Perfil.js'
+import Favorito from '../Models/Favorito.js'
 
 
 
