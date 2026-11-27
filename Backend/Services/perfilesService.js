@@ -1,9 +1,14 @@
-import Perfil from '../../Models/Perfil.js'
+import Perfil from '../Models/Perfil.js'
 
 
 
-export async function obtenerPerfiles() {
-  return await Perfil.find()
+export async function obtenerPerfilesPorUsuario(usuarioId) {
+  return await Perfil.find({usuario: usuarioId})
+}
+
+
+export async function obtenerPerfilPorId(perfilId, usuarioId) {
+  return await Perfil.findOne({_id: perfilId, usuario: usuarioId})
 }
 
 
@@ -22,4 +27,13 @@ export async function editarPerfil(id, nuevosDatos) {
 
 export async function eliminarPerfil(id) {
   return await Perfil.findByIdAndDelete(id)
+}
+
+
+
+export async function obtenerPerfilAutenticado(perfilId, usuarioId) {
+  return await Perfil.findOne({
+    _id: perfilId,
+    usuario: usuarioId
+  })
 }

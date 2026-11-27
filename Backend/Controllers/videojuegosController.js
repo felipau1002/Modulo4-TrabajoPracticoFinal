@@ -5,7 +5,7 @@ export async function obtenerJuegosController(req, res) {
   try {
     const juegos = await obtenerVideojuegos()
 
-    res.status(200).json(juegos) //cambiar por res.redirect => res.redirect('/algo');
+    res.status(200).json(juegos)
   } catch (error) {
     res.status(500).send({ mensaje: "Error al obtener videojuegos", error: error.message })
   }
@@ -20,7 +20,7 @@ export async function obtenerJuegoPorIDController(req, res) {
       return res.status(404).json({ mensaje: "videojuego no encontrado" })
     }
 
-    res.status(200).json(juego) //cambiar por res.redirect => res.redirect('/algo');
+    res.status(200).json(juego)
   } catch (error) {
     res.status(500).send({ mensaje: "Error al obtener videojuego", error: error.message })
   }
@@ -31,7 +31,7 @@ export async function agregarJuegoController(req, res) {
   try {
     const juegoNuevo = await agregarVideojuego(req.body)
 
-    res.status(200).json(juegoNuevo) //cambiar por res.redirect => res.redirect('/algo');
+    res.status(200).json(juegoNuevo)
   } catch (error) {
     res.status(500).send({ mensaje: "Error al agregar videojuego", error: error.message })
   }
@@ -44,7 +44,7 @@ export async function editarJuegoController(req, res) {
     const nuevosDatos = req.body
     const juegoEditado = await editarVideojuego(id, nuevosDatos)
 
-    res.status(200).json(juegoEditado) //cambiar por res.redirect => res.redirect('/algo');
+    res.status(200).json(juegoEditado)
   } catch (error) {
     res.status(500).send({ mensaje: "Error al agregar videojuego", error: error.message })
   }
@@ -56,7 +56,7 @@ export async function eliminarJuegoController(req, res) {
     const { id } = req.params
     const juegoEliminado = await eliminarVideojuego(id)
 
-    res.status(200).json(juegoEliminado) //cambiar por res.redirect => res.redirect('/algo');
+    res.status(200).json(juegoEliminado)
   } catch (error) {
     res.status(500).send({ mensaje: "Error al agregar videojuego", error: error.message })
   }

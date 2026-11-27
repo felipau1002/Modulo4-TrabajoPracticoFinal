@@ -1,14 +1,34 @@
-import { obtenerPerfiles, agregarPerfil, editarPerfil, eliminarPerfil } from "../Services/perfilesService.js";
+import { agregarPerfil, editarPerfil, eliminarPerfil, obtenerPerfilesPorUsuario, obtenerPerfilPorId } from "../Services/perfilesService.js";
 
 
 
 export async function obtenerPerfilesController(req, res) {
   try {
-    const perfiles = await obtenerPerfiles()
+    const usuarioId = req.usuario.id
+    const perfiles = await obtenerPerfilesPorUsuario(usuarioId)
 
     res.status(200).json(perfiles)
   } catch (error) {
     res.status(500).send({ mensaje: 'error al obtener perfiles', error: error.message })
+  }
+}
+
+
+export async function obtenerPerfilPorIdController(req, res) {
+  try {
+    const usuarioId = req.usuario.id
+    const perfilId = req.params.id
+    const detalle = await obtenerPerfilPorId(perfilId, usuarioId)
+
+    if (!detalle) {
+      return res.status(404).json({
+        mensaje: 'Perfil no encontrado'
+      })
+    }
+
+    res.status(200).json(detalle)
+  } catch (error) {
+    res.status(500).send({ mensaje: 'error al obtener perfil', error: error.message })
   }
 }
 
